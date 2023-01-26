@@ -4,6 +4,8 @@ use App\Models\Listing;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\listingController;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Redirect;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,28 +18,33 @@ use App\Http\Controllers\listingController;
 |
 */
 
-Route::get('/', [listingController::class, 'index']);
+Route::redirect('/', '/en');
 
-Route::get('/listings/create', [listingController::class, 'create'])->middleware('auth');
+Route::group(['prefix' => '{lang}'], function () {
 
-Route::post('/listings', [listingController::class, 'store'])->middleware('auth');
+    Route::get('/', [listingController::class, 'index'])->name('index');
 
-Route::get('/listings/{listing}/edit', [listingController::class, 'edit'])->middleware('auth');
+    Route::get('/listings/create', [listingController::class, 'create'])->middleware('auth')->name('listingsCreate');
 
-Route::put('/listings/{listing}', [listingController::class, 'update'])->middleware('auth');
+    Route::post('/listings', [listingController::class, 'store'])->middleware('auth')->name('listingsStore');
 
-Route::delete('/listings/{listing}', [listingController::class, 'destroy'])->middleware('auth');
+    Route::get('/listings/{listing}/edit', [listingController::class, 'edit'])->middleware('auth')->name('listingsEdit');
 
-Route::get('/listings/manage', [listingController::class, 'manage']);
+    Route::put('/listings/{listing}', [listingController::class, 'update'])->middleware('auth')->name('listingsUpdate');
 
-Route::get('/listings/{id}', [listingController::class, 'show']);
+    Route::delete('/listings/{listing}', [listingController::class, 'destroy'])->middleware('auth')->name('listingsDestroy');
 
-Route::get('/register', [userController::class, 'create'])->middleware('guest');
+    Route::get('/listings/manage', [listingController::class, 'manage'])->name('manage');
 
-Route::post('/users', [userController::class, 'store'])->middleware('guest');
+    Route::get('/listings/{id}', [listingController::class, 'show'])->name('show');
 
-Route::post('/logout', [userController::class, 'logout'])->middleware('auth');
+    Route::get('/register', [userController::class, 'create'])->name('register')->middleware('guest');
 
-Route::get('/users/login', [userController::class, 'login'])->name('login')->middleware('guest');
+    Route::post('/users', [userController::class, 'store'])->name('users')->middleware('guest');
 
-Route::post('/users/authenticate', [userController::class, 'authenticate'])->middleware('guest');
+    Route::post('/logout', [userController::class, 'logout'])->name('logout')->middleware('auth');
+
+    Route::get('/users/login', [userController::class, 'login'])->name('login')->middleware('guest');
+
+    Route::post('/users/authenticate', [userController::class, 'authenticate'])->name('authenticate')->middleware('guest');
+});

@@ -2,17 +2,17 @@
     <x-card class="p-10 max-w-lg mx-auto mt-24">
                     <header class="text-center">
                         <h2 class="text-2xl font-bold uppercase mb-1">
-                            Login
+                            {{__('Login')}}
                         </h2>
-                        <p class="mb-4">Login to your account to post gigs</p>
+                        <p class="mb-4">{{__('Login to your account to post gigs')}}</p>
                     </header>
 
-                    <form action="/users/authenticate" method="POST">
+                    <form action="{{ route('authenticate', App::getLocale()) }}" method="POST">
                         @csrf
 
                         <div class="mb-6">
                             <label for="email" class="inline-block text-lg mb-2"
-                                >Email</label
+                                >{{__('Email')}}</label
                             >
                             <input
                                 type="email"
@@ -21,10 +21,10 @@
                                 value="{{old('email')}}"
                             />
                             @error('email')
-                            <p class="text-red-500 text-xs mt-1">
-                                {{$message}}
-                            </p>
-                        @enderror
+                                <p class="text-red-500 text-xs mt-1">
+                                    {{$message}}
+                                </p>
+                            @enderror
                         </div>
 
                         <div class="mb-6">
@@ -32,7 +32,7 @@
                                 for="password"
                                 class="inline-block text-lg mb-2"
                             >
-                                Password
+                                {{__('Password')}}
                             </label>
                             <input
                                 type="password"
@@ -42,10 +42,10 @@
                             />
 
                             @error('password')
-                            <p class="text-red-500 text-xs mt-1">
-                                {{$message}}
-                            </p>
-                        @enderror
+                                <p class="text-red-500 text-xs mt-1">
+                                    {{$message}}
+                                </p>
+                            @enderror
                         </div>
 
                        <div class="mb-6">
@@ -53,15 +53,15 @@
                                 type="submit"
                                 class="bg-laravel text-white rounded py-2 px-4 hover:bg-black"
                             >
-                                Sign In
+                                {{__('Sign in')}}
                             </button>
                         </div>
 
                         <div class="mt-8">
                             <p>
-                                Don't have an account?
-                                <a href="/register" class="text-laravel"
-                                    >Register</a>
+                                {{__('Don\'t have an account?')}}
+                                <a href="{{ route('register', App::getLocale()) }}" class="text-laravel"
+                                    >{{__('Register')}}</a>
                             </p>
                         </div>
                     </form>

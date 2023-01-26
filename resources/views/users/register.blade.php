@@ -2,16 +2,16 @@
     <x-card class="p-10 max-w-lg mx-auto mt-24">
                     <header class="text-center">
                         <h2 class="text-2xl font-bold uppercase mb-1">
-                            Register
+                            {{__('Register')}}
                         </h2>
-                        <p class="mb-4">Create an account to post gigs</p>
+                        <p class="mb-4">{{__('Create an account to post gigs')}}</p>
                     </header>
 
-                    <form action="/users" method="POST">
+                    <form action="{{ route('users', App::getLocale()) }}" method="POST">
                         @csrf
                         <div class="mb-6">
                             <label for="name" class="inline-block text-lg mb-2">
-                                Name
+                                {{__('Name')}}
                             </label>
                             <input
                                 type="text"
@@ -29,7 +29,7 @@
 
                         <div class="mb-6">
                             <label for="email" class="inline-block text-lg mb-2"
-                                >Email</label
+                                >{{__('Email')}}</label
                             >
                             <input
                                 type="email"
@@ -49,7 +49,7 @@
                                 for="password"
                                 class="inline-block text-lg mb-2"
                             >
-                                Password
+                                {{__('Password')}}
                             </label>
                             <input
                                 type="password"
@@ -70,7 +70,7 @@
                                 for="password_confirmation"
                                 class="inline-block text-lg mb-2"
                             >
-                                Confirm Password
+                                {{__('Confirm Password')}}
                             </label>
                             <input
                                 type="password"
@@ -91,15 +91,15 @@
                                 type="submit"
                                 class="bg-laravel text-white rounded py-2 px-4 hover:bg-black"
                             >
-                                Sign Up
+                                {{__('Sign Up')}}
                             </button>
                         </div>
 
                         <div class="mt-8">
                             <p>
-                                Already have an account?
-                                <a href="/users/login" class="text-laravel"
-                                    >Login</a
+                                {{__('Already have an account?')}}
+                                <a href="{{ route('login', App::getLocale()) }}" class="text-laravel"
+                                    >{{__('Login')}}</a
                                 >
                             </p>
                         </div>

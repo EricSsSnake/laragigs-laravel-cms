@@ -14,12 +14,12 @@ class userController extends Controller
         return view('users.register');
     }
 
-    public function store(Request $request)
+    public function store()
     {
         $formFields = request()->validate([
             'name' => ['required', 'min:3'],
             'email' => ['required', 'email', Rule::unique('users', 'email')],
-            'password' => ['required', 'min:8', 'confirmed']
+            'password' => ['required', 'min:6', 'confirmed']
         ]);
 
         $formFields['password'] = bcrypt($formFields['password']);

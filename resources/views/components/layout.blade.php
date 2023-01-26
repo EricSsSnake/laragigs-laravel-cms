@@ -33,38 +33,53 @@
                 ><img class="w-24" src="{{asset('images/logo.png')}}" alt="" class="logo"
             /></a>
             <ul class="flex space-x-6 mr-6 text-lg">
+
+                @if (App::isLocale('en'))
+                    <li>
+                        <a href="{{ route(Route::currentRouteName(), 'fa') }}" class="hover:text-laravel">
+                            FA
+                        </a>
+                    </li>
+                @else
+                    <li>
+                        <a href="{{ route(Route::currentRouteName(), 'en') }}" class="hover:text-laravel">
+                            EN
+                        </a>
+                    </li>
+                @endif
+
                 @auth  
                 <li>
                     <span class="font-bold uppercase">
-                        welcome {{auth()->user()->name}}
+                     {{__('Welcome')}} {{auth()->user()->name}}
                     </span>
                 </li>
 
                 <li>
                     <a href="/listings/manage" class="hover:text-laravel"
-                        ><i class="fa-solid fa-gear"></i> Manage Listings
-                        </a>
+                        ><i class="fa-solid fa-gear"></i> {{__('Manage Listings')}}
+                    </a>
                 </li>
 
                 <li>
-                    <form action="/logout" method="post">
+                    <form action="{{ route('logout', App::getLocale()) }}" method="post">
                         @csrf
                         <button type="submit">
-                            <i class="fa-solid fa-door-closed"></i> Logout
+                            <i class="fa-solid fa-door-closed"></i> {{__('Logout')}}
                         </button>
                     </form>
                 </li>
                 @else
                 <li>
-                    <a href="/register" class="hover:text-laravel"
-                        ><i class="fa-solid fa-user-plus"></i> Register</a
-                    >
+                    <a href="{{route('register', App::getLocale())}}" class="hover:text-laravel">
+                        <i class="fa-solid fa-user-plus"></i> {{__('Register')}}
+                    </a>
                 </li>
 
                 <li>
-                    <a href="/users/login" class="hover:text-laravel"
-                        ><i class="fa-solid fa-arrow-right-to-bracket"></i>
-                        Login</a>
+                    <a href="{{route('login', App::getLocale())}}" class="hover:text-laravel">
+                        <i class="fa-solid fa-arrow-right-to-bracket"></i> {{__('Login')}}
+                    </a>
                 </li>
                 @endauth
             </ul>
@@ -77,12 +92,12 @@
         <footer
         class="fixed bottom-0 left-0 w-full flex items-center justify-start font-bold bg-laravel text-white h-24 mt-24 opacity-90 md:justify-center"
     >
-        <p class="ml-2">Copyright &copy; {{date('Y')}}, All Rights reserved</p>
+        <p class="ml-2">{{__('Copyright')}} &copy; {{date('Y')}}, {{__('All Rights reserved')}}</p>
 
         <a
             href="/listings/create"
             class="absolute top-1/3 right-10 bg-black text-white py-2 px-5"
-            >Post Job</a
+            >{{__('Post Job')}}</a
         >
     </footer>
     <x-flash-message></x-flash-message>
