@@ -15,6 +15,13 @@ class listingController extends Controller
         ]);
     }
 
+    public function show($lang, $id)
+    {
+        $listing = Listing::find($id);
+
+        return $listing ? view('listings.show', ['listing' => $listing]) : abort('404');
+    }
+
     public function create()
     {
         return view('listings.create');
@@ -87,13 +94,5 @@ class listingController extends Controller
     public function manage()
     {
         return view('listings.manage', ['listings' => auth()->user()->listings()->get()]);
-    }
-
-
-    public function show($id)
-    {
-        $listing = Listing::find($id);
-
-        return $listing ? view('listings.show', ['listings' => $listing]) : abort('404');
     }
 }

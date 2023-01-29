@@ -2,24 +2,24 @@
     <x-card class="p-10 max-w-lg mx-auto mt-24">
                     <header class="text-center">
                         <h2 class="text-2xl font-bold uppercase mb-1">
-                            Create a Gig
+                            {{__('Create a Gig')}}
                         </h2>
-                        <p class="mb-4">Post a gig to find a developer</p>
+                        <p class="mb-4">{{__('Post a gig to find a developer')}}</p>
                     </header>
 
-                    <form action="/listings" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('listingsStore', App::getLocale()) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-6">
                             <label
                                 for="company"
                                 class="inline-block text-lg mb-2"
-                                >Company Name</label
+                                >{{__('Company Name')}}</label
                             >
                             <input
                                 type="text"
                                 class="border border-gray-200 rounded p-2 w-full"
                                 name="company"
-                                placeholder="Example: Acme Corps"
+                                placeholder="{{__('Example: Acme Corps')}}"
                                 value="{{old('company')}}"
                             />
 
@@ -32,13 +32,13 @@
 
                         <div class="mb-6">
                             <label for="title" class="inline-block text-lg mb-2"
-                                >Job Title</label
+                                >{{__('Job Title')}}</label
                             >
                             <input
                                 type="text"
                                 class="border border-gray-200 rounded p-2 w-full"
                                 name="title"
-                                placeholder="Example: Senior Laravel Developer"
+                                placeholder="{{__('Example: Senior Laravel Developer')}}"
                                 value="{{old('title')}}"
 
                             />
@@ -54,13 +54,13 @@
                             <label
                                 for="location"
                                 class="inline-block text-lg mb-2"
-                                >Job Location</label
+                                >{{__('Job Location')}}</label
                             >
                             <input
                                 type="text"
                                 class="border border-gray-200 rounded p-2 w-full"
                                 name="location"
-                                placeholder="Example: Remote, Boston MA, etc"
+                                placeholder="{{__('Example: Remote, Boston MA, etc')}}"
                                 value="{{old('location')}}"
 
                             />
@@ -74,13 +74,13 @@
 
                         <div class="mb-6">
                             <label for="email" class="inline-block text-lg mb-2"
-                                >Contact Email</label
+                                >{{__('Contact Email')}}</label
                             >
                             <input
                                 type="text"
                                 class="border border-gray-200 rounded p-2 w-full"
                                 name="email"
-                                placeholder="Example: something@something.com"
+                                placeholder="{{__('Example: something@something.com')}}"
                                 value="{{old('email')}}"
 
                             />
@@ -97,13 +97,13 @@
                                 for="website"
                                 class="inline-block text-lg mb-2"
                             >
-                                Website/Application URL
+                                {{__('Website/Application URL')}}
                             </label>
                             <input
                                 type="text"
                                 class="border border-gray-200 rounded p-2 w-full"
                                 name="website"
-                                placeholder="Example: http://acme.com"
+                                placeholder="{{__('Example: http://acme.com')}}"
                                 value="{{old('website')}}"
 
                             />
@@ -117,13 +117,13 @@
 
                         <div class="mb-6">
                             <label for="tags" class="inline-block text-lg mb-2">
-                                Tags (Comma Separated)
+                                {{__('Tags (Comma Separated)')}}
                             </label>
                             <input
                                 type="text"
                                 class="border border-gray-200 rounded p-2 w-full"
                                 name="tags"
-                                placeholder="Example: Laravel, Backend, Postgres, etc"
+                                placeholder="{{__('Example: Laravel, Backend, Postgres, etc')}}"
                                 value="{{old('tags')}}"
 
                             />
@@ -137,7 +137,7 @@
 
                         <div class="mb-6">
                             <label for="logo" class="inline-block text-lg mb-2">
-                                Company Logo
+                                {{__('Company Logo')}}
                             </label>
                             <input
                                 type="file"
@@ -157,13 +157,13 @@
                                 for="description"
                                 class="inline-block text-lg mb-2"
                             >
-                                Job Description
+                                {{__('Job Description')}}
                             </label>
                             <textarea
                                 class="border border-gray-200 rounded p-2 w-full"
                                 name="description"
                                 rows="10"
-                                placeholder="Include tasks, requirements, salary, etc"
+                                placeholder="{{__('Include tasks, requirements, salary, etc')}}"
                             >{{old('description')}}</textarea>
 
                             @error('description')
@@ -177,10 +177,10 @@
                             <button
                                 class="bg-laravel text-white rounded py-2 px-4 hover:bg-black"
                             >
-                                Create Gig
+                                {{__('Create Gig')}}
                             </button>
 
-                            <a href="/" class="text-black ml-4"> Back </a>
+                            <a href="{{ route('index', App::getLocale()) }}" class="text-black {{ App::isLocale('en') ? 'ml-4' : 'mr-4' }}"> {{__('Back')}} </a>
                         </div>
                     </form>
     </x-card>

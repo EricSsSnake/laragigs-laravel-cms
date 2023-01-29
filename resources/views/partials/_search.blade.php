@@ -6,6 +6,7 @@
             ></i>
         </div>
         <input
+            style="direction: ltr"
             type="text"
             name="search"
             class="h-14 w-full pl-10 pr-20 rounded-lg z-0 focus:shadow focus:outline-none"

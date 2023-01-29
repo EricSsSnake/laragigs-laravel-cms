@@ -4,10 +4,10 @@
                         <h2 class="text-2xl font-bold uppercase mb-1">
                             Edit your Gig
                         </h2>
-                        <p class="mb-4">Edit {{$listings->title}}</p>
+                        <p class="mb-4">Edit {{$listing->title}}</p>
                     </header>
 
-                    <form action="/listings/{{$listings->id}}" method="POST" enctype="multipart/form-data">
+                    <form action="/listing/{{$listing->id}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
 
@@ -22,7 +22,7 @@
                                 class="border border-gray-200 rounded p-2 w-full"
                                 name="company"
                                 placeholder="Example: Acme Corps"
-                                value="{{$listings->company}}"
+                                value="{{$listing->company}}"
                             />
 
                             @error('company')
@@ -41,7 +41,7 @@
                                 class="border border-gray-200 rounded p-2 w-full"
                                 name="title"
                                 placeholder="Example: Senior Laravel Developer"
-                                value="{{$listings->title}}"
+                                value="{{$listing->title}}"
 
                             />
 
@@ -63,7 +63,7 @@
                                 class="border border-gray-200 rounded p-2 w-full"
                                 name="location"
                                 placeholder="Example: Remote, Boston MA, etc"
-                                value="{{$listings->location}}"
+                                value="{{$listing->location}}"
 
                             />
 
@@ -83,7 +83,7 @@
                                 class="border border-gray-200 rounded p-2 w-full"
                                 name="email"
                                 placeholder="Example: something@something.com"
-                                value="{{$listings->email}}"
+                                value="{{$listing->email}}"
 
                             />
 
@@ -106,7 +106,7 @@
                                 class="border border-gray-200 rounded p-2 w-full"
                                 name="website"
                                 placeholder="Example: http://acme.com"
-                                value="{{$listings->website}}"
+                                value="{{$listing->website}}"
 
                             />
 
@@ -126,7 +126,7 @@
                                 class="border border-gray-200 rounded p-2 w-full"
                                 name="tags"
                                 placeholder="Example: Laravel, Backend, Postgres, etc"
-                                value="{{$listings->tags}}"
+                                value="{{$listing->tags}}"
 
                             />
 
@@ -147,7 +147,7 @@
                                 name="logo"
                             />
 
-                            <img src="{{asset("storage/$listings->logo")}}" alt="">
+                            <img src="{{asset("storage/$listing->logo")}}" alt="">
 
                              @error('logo')
                                 <p class="text-red-500 text-xs mt-1">
@@ -168,7 +168,7 @@
                                 name="description"
                                 rows="10"
                                 placeholder="Include tasks, requirements, salary, etc"
-                            >{{$listings->description}}</textarea>
+                            >{{$listing->description}}</textarea>
 
                             @error('description')
                             <p class="text-red-500 text-xs mt-1">

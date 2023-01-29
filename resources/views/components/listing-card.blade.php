@@ -3,13 +3,13 @@
 <x-card>
     <div class="flex">
         <img
-            class="hidden w-48 mr-6 md:block"
+            class="hidden w-48 md:block {{ App::isLocale('en') ? 'mr-6' : 'ml-6' }}"
             src="{{$listing->logo ? asset('storage/' . $listing->logo) : asset('images/no-image.png')}}"
             alt=""
         />
         <div>
             <h3 class="text-2xl">
-                <a href="listings/{{$listing->id}}}">
+                <a href="{{ route('show', ['id' => $listing->id, 'lang' => App::getLocale()]) }}">
                     {{$listing->title}}
                 </a>
             </h3>

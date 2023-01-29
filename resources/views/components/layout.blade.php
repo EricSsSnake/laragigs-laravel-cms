@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="direction: {{ App::isLocale('fa') ? 'rtl' : 'ltr' }}">
     <head>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -28,7 +28,7 @@
         <title>LaraGigs | Find Laravel Jobs & Projects</title>
     </head>
     <body class="mb-48">
-        <nav class="flex justify-between items-center mb-4">
+        <nav class="flex justify-between items-center mb-4" style="direction: ltr">
             <a href="/"
                 ><img class="w-24" src="{{asset('images/logo.png')}}" alt="" class="logo"
             /></a>
@@ -41,7 +41,7 @@
                         </a>
                     </li>
                 @else
-                    <li>
+                    <li class="ml-6">
                         <a href="{{ route(Route::currentRouteName(), 'en') }}" class="hover:text-laravel">
                             EN
                         </a>
@@ -56,7 +56,7 @@
                 </li>
 
                 <li>
-                    <a href="/listings/manage" class="hover:text-laravel"
+                    <a href="{{ route('manage', App::getLocale()) }}" class="hover:text-laravel"
                         ><i class="fa-solid fa-gear"></i> {{__('Manage Listings')}}
                     </a>
                 </li>
@@ -92,10 +92,10 @@
         <footer
         class="fixed bottom-0 left-0 w-full flex items-center justify-start font-bold bg-laravel text-white h-24 mt-24 opacity-90 md:justify-center"
     >
-        <p class="ml-2">{{__('Copyright')}} &copy; {{date('Y')}}, {{__('All Rights reserved')}}</p>
+        <p class="ml-2">{{__('Copyright')}} &copy; {{date('Y')}} | {{__('All Rights reserved')}}</p>
 
         <a
-            href="/listings/create"
+            href="{{ route('listingsCreate', App::getLocale()) }}"
             class="absolute top-1/3 right-10 bg-black text-white py-2 px-5"
             >{{__('Post Job')}}</a
         >

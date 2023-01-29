@@ -11,22 +11,22 @@
         >
             <img
                 class="w-48 mr-6 mb-6"
-                src="{{$listings->logo ? asset('storage/' . $listings->logo) : asset('images/no-image.png')}}"
+                src="{{$listing->logo ? asset('storage/' . $listing->logo) : asset('images/no-image.png')}}"
                 alt=""
             />
 
             <h3 class="text-2xl mb-2">
-                {{$listings->title}}
+                {{$listing->title}}
             </h3>
             <div class="text-xl font-bold mb-4">
-                {{$listings->company}}
+                {{$listing->company}}
             </div>
         
-            <x-listing-tags :tags="$listings->tags"/>
+            <x-listing-tags :tags="$listing->tags"/>
 
             <div class="text-lg my-4">
                 <i class="fa-solid fa-location-dot"></i>
-                {{$listings->location}}
+                {{$listing->location}}
             </div>
             <div class="border border-gray-200 w-full mb-6"></div>
             <div>
@@ -34,16 +34,16 @@
                     Job Description
                 </h3>
                 <div class="text-lg space-y-6">
-                    {{$listings->description}}
+                    {{$listing->description}}
                     <a
-                        href="mailto:{{$listings->email}}"
+                        href="mailto:{{$listing->email}}"
                         class="block bg-laravel text-white mt-6 py-2 rounded-xl hover:opacity-80"
                         ><i class="fa-solid fa-envelope"></i>
                         Contact Employer</a
                     >
 
                     <a
-                        href="{{$listings->website}}"
+                        href="{{$listing->website}}"
                         target="_blank"
                         class="block bg-black text-white py-2 rounded-xl hover:opacity-80"
                         ><i class="fa-solid fa-globe"></i> Visit
