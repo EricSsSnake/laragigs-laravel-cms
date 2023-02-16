@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" style="direction: {{ App::isLocale('fa') ? 'rtl' : 'ltr' }}">
+<html lang="{{ App::isLocale('en') ? 'en' : 'fa' }}" style="direction: {{ App::isLocale('fa') ? 'rtl' : 'ltr' }}">
     <head>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -12,6 +12,18 @@
             crossorigin="anonymous"
             referrerpolicy="no-referrer"
         />
+        
+    @if (App::isLocale('fa'))
+        <style>
+            body {
+                font-family: 'nazanin';
+                font-style: normal;
+                font-weight: normal;
+                font-display: swap;
+            }
+        </style>
+    @endif
+
         <script src="//unpkg.com/alpinejs" defer></script>
         <script src="https://cdn.tailwindcss.com"></script>
         <script>
@@ -36,13 +48,13 @@
 
                 @if (App::isLocale('en'))
                     <li>
-                        <a href="{{ route(Route::currentRouteName(), 'fa') }}" class="hover:text-laravel">
+                        <a href="{{ route(Route::currentRouteName(), ['lang' => 'fa', 'id' => $listing ? $listing->id : '']) }}" class="hover:text-laravel">
                             FA
                         </a>
                     </li>
                 @else
                     <li class="ml-6">
-                        <a href="{{ route(Route::currentRouteName(), 'en') }}" class="hover:text-laravel">
+                        <a href="{{ route(Route::currentRouteName(), ['lang' => 'en', 'id' => $listing ? $listing->id : '']) }}" class="hover:text-laravel">
                             EN
                         </a>
                     </li>

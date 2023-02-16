@@ -29,6 +29,6 @@ class Listing extends Model
 
     public function user()
     {
-        return $this->BelongsTo(User::class, 'user_id');
+        return $this->belongsToMany('App\Models\User');
     }
 }

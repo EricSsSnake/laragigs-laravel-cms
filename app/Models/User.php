@@ -16,7 +16,7 @@ class User extends Authenticatable
 
     public function listings()
     {
-        return $this->HasMany(Listing::class, 'user_id');
+        return $this->belongsToMany('App\Models\Listing');
     }
 
     /**
